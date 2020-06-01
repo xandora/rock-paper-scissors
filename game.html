@@ -1,0 +1,40 @@
+<script>
+
+    function computerPlay(){
+        let play = Math.floor(Math.random() * 3);
+        if (play == 0){
+            return "rock";
+        } else if (play == 1){
+            return "paper";
+        } else {
+            return "scissors";
+        }
+    }
+
+    function playRound(playerSelection, computerSelection){
+        let playerGo = playerSelection.toLowerCase();
+        let computerGo = computerSelection.toLowerCase();
+        if (playerGo == "rock" && computerGo == "scissors") {
+            playerScore++;
+            return "You win! " + playerGo + " beats " + computerGo + ".";
+        }
+        else if (playerGo == computerGo) {
+            return "It's a draw!" + " Player score: " + playerScore + ".";
+        } else {
+            computerScore++;
+            return "You lose! " + computerGo + " beats " + playerGo + ".";
+        }
+        
+    }
+
+    function game(){
+        let playerScore = 0;
+        let computerScore = 0;
+        console.log(playRound(prompt(), computerPlay()));
+        console.log(playRound(prompt(), computerPlay()));
+        console.log(playRound(prompt(), computerPlay()));
+        console.log(playRound(prompt(), computerPlay()));
+        console.log(playRound(prompt(), computerPlay()));
+        console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
+    }
+</script>
