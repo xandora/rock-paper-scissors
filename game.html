@@ -1,40 +1,47 @@
 <script>
+let playerScore = 0;
+let computerScore = 0;
 
-    function computerPlay(){
-        let play = Math.floor(Math.random() * 3);
-        if (play == 0){
-            return "rock";
-        } else if (play == 1){
-            return "paper";
-        } else {
-            return "scissors";
-        }
+function computerPlay(){
+    let play = Math.floor(Math.random() * 3);
+    if (play == 0){
+        return "rock";
+    } else if (play == 1){
+        return "paper";
+    } else {
+        return "scissors";
     }
+}
 
-    function playRound(playerSelection, computerSelection){
-        let playerGo = playerSelection.toLowerCase();
-        let computerGo = computerSelection.toLowerCase();
-        if (playerGo == "rock" && computerGo == "scissors") {
-            playerScore++;
-            return "You win! " + playerGo + " beats " + computerGo + ".";
-        }
-        else if (playerGo == computerGo) {
-            return "It's a draw!" + " Player score: " + playerScore + ".";
-        } else {
-            computerScore++;
-            return "You lose! " + computerGo + " beats " + playerGo + ".";
-        }
-        
+function playRound(playerSelection, computerSelection){
+    let playerGo = playerSelection.slice(0,1).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    let computerGo = computerSelection.slice(0,1).toUpperCase() + computerSelection.slice(1).toLowerCase();
+    if ((playerGo == "Rock" && computerGo == "Scissors") || (playerGo == "Paper" && computerGo == "Rock") || (playerGo == "Scissors" && computerGo == "Paper")){
+        playerScore++;
+        return "You win! " + playerGo + " beats " + computerGo + ".";
     }
+    else if (playerGo == computerGo) {
+        return "It's a draw!";
+    }
+    else if (playerGo == '') {
+        return "Player did not make a move!";   
+    }
+    else if (playerGo != "Rock" || "Paper" || "Scissors") {
+        return "Please play a valid move";
+    }
+    else {
+        computerScore++;
+        return "You lose! " + computerGo + " beats " + playerGo + ".";
+    }
+    
+}
 
-    function game(){
-        let playerScore = 0;
-        let computerScore = 0;
-        console.log(playRound(prompt(), computerPlay()));
-        console.log(playRound(prompt(), computerPlay()));
-        console.log(playRound(prompt(), computerPlay()));
-        console.log(playRound(prompt(), computerPlay()));
-        console.log(playRound(prompt(), computerPlay()));
-        console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
-    }
+function game(){
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
+}
 </script>
