@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors Game</title>
 </head>
 <body>
 <h1>Open your console (Press F12) and type game() to start!</h1>
@@ -47,11 +47,11 @@ function playRound(playerSelection, computerSelection){
 }
 
 function game(){
-    console.log(playRound(prompt(), computerPlay()));
-    console.log(playRound(prompt(), computerPlay()));
-    console.log(playRound(prompt(), computerPlay()));
-    console.log(playRound(prompt(), computerPlay()));
-    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
+    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
+    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
+    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
+    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
     console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
 }
 </script>
