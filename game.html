@@ -36,9 +36,6 @@ function playRound(playerSelection, computerSelection){
     else if (playerGo == '') {
         return "Player did not make a move!";   
     }
-    else if (playerGo != "Rock" || "Paper" || "Scissors") {
-        return "Please play a valid move";
-    }
     else {
         computerScore++;
         return "You lose! " + computerGo + " beats " + playerGo + ".";
@@ -47,11 +44,11 @@ function playRound(playerSelection, computerSelection){
 }
 
 function game(){
-    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
-    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
-    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
-    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
-    console.log(playRound(prompt("Choose one: Rock, Paper, or Scissors"), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
+    console.log(playRound(prompt(), computerPlay()));
     console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
 }
 </script>
