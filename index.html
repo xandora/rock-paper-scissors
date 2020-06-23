@@ -52,11 +52,9 @@
         }
 
         function game() {
-            console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
+            for (let i = 0; i <=4; i++){
+                console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
+            }
             console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
         }
     </script>
