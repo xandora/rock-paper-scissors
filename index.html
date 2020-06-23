@@ -13,22 +13,27 @@
     <script>
         let playerScore = 0;
         let computerScore = 0;
+        let moves = ["Rock", "Paper", "Scissors"]
 
         function computerPlay() {
             let play = Math.floor(Math.random() * 3);
             if (play == 0) {
-                return "rock";
+                return moves[0];
             } else if (play == 1) {
-                return "paper";
+                return moves[1];
             } else {
-                return "scissors";
+                return moves[2];
             }
         }
 
         function playRound(playerSelection, computerSelection) {
-            let playerGo = playerSelection.slice(0, 1).toUpperCase() + playerSelection.slice(1).toLowerCase();
-            let computerGo = computerSelection.slice(0, 1).toUpperCase() + computerSelection.slice(1).toLowerCase();
-            if ((playerGo == "Rock" && computerGo == "Scissors") || (playerGo == "Paper" && computerGo == "Rock") || (playerGo == "Scissors" && computerGo == "Paper")) {
+            let playerGo = playerSelection[0].toUpperCase() + playerSelection.slice(1);
+            let computerGo = computerSelection[0].toUpperCase() + computerSelection.slice(1);
+            if (
+                (playerGo === moves[0] && computerGo === moves[2]) ||
+                (playerGo === moves[1] && computerGo === moves[0]) ||
+                (playerGo === moves[2] && computerGo === moves[1])
+                ) {
                 playerScore++;
                 return "You win! " + playerGo + " beats " + computerGo + ".";
             }
