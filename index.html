@@ -8,13 +8,15 @@
 </head>
 
 <body>
-    <h1>Open your console (Press F12) and type game() to start!</h1>
+    <h1>Rock Paper Scissors!</h1>
+    <h3>Open your console (Press F12) and type game() to start!</h3>
     <p>View the code for this game <a href="https://github.com/xandora/rock-paper-scissors">here</a>.</p>
+    <p id="score"></p>
 
     <script>
         let playerScore = 0;
         let computerScore = 0;
-        let moves = ["Rock", "Paper", "Scissors"]
+        let moves = ["Rock", "Paper", "Scissors"];
 
         function computerPlay() {
             let play = Math.floor(Math.random() * 3);
