@@ -46,6 +46,9 @@
             else if (playerGo == '') {
                 return "Player did not make a move!";
             }
+            else if (playerGo !== moves[0] || moves[1] || moves[2]) {
+                return "Player entered an invalid move."
+            }
             else {
                 computerScore++;
                 return "You lose! " + computerGo + " beats " + playerGo + ".";
