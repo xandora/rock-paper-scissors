@@ -17,25 +17,18 @@
         let playerScore = 0;
         let computerScore = 0;
         let moves = ["Rock", "Paper", "Scissors"];
-
+        
         function computerPlay() {
-            let play = Math.floor(Math.random() * 3);
-            if (play == 0) {
-                return moves[0];
-            } else if (play == 1) {
-                return moves[1];
-            } else {
-                return moves[2];
-            }
+            return moves[Math.floor(Math.random()*moves.length)];
         }
 
         function playRound(playerSelection, computerSelection) {
-            let playerGo = playerSelection[0].toUpperCase() + playerSelection.slice(1);
-            let computerGo = computerSelection[0].toUpperCase() + computerSelection.slice(1);
+            let playerGo = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+            let computerGo = computerSelection;
             if (
-                (playerGo === moves[0] && computerGo === moves[2]) ||
-                (playerGo === moves[1] && computerGo === moves[0]) ||
-                (playerGo === moves[2] && computerGo === moves[1])
+                (playerGo == moves[0] && computerGo == moves[2]) ||
+                (playerGo == moves[1] && computerGo == moves[0]) ||
+                (playerGo == moves[2] && computerGo == moves[1])
                 ) {
                 playerScore++;
                 return "You win! " + playerGo + " beats " + computerGo + ".";
@@ -47,7 +40,8 @@
                 return "Player did not make a move!";
             }
             else if (playerGo !== moves[0] || moves[1] || moves[2]) {
-                return "Player entered an invalid move."
+                console.log("Player entered an invalid move. " + "(" + playerGo + ")");
+                console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
             }
             else {
                 computerScore++;
@@ -57,6 +51,8 @@
         }
 
         function game() {
+            playerScore = 0;
+            computerScore = 0;
             for (let i = 0; i <=4; i++){
                 console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
             }
