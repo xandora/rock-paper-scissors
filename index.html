@@ -36,10 +36,11 @@
             else if (playerGo == computerGo) {
                 return "It's a draw!";
             }
-            else if (playerGo == '') {
-                return "Player did not make a move!";
+            else if (playerGo == '' || null) {
+                console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
+
             }
-            else if (playerGo !== moves[0] || moves[1] || moves[2]) {
+            else if (!moves.includes(playerGo)) {
                 console.log("Player entered an invalid move. " + "(" + playerGo + ")");
                 console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
             }
