@@ -9,8 +9,13 @@
 
 <body>
     <h1>Rock Paper Scissors!</h1>
-    <h3>Open your console (Press F12) and type game() to start!</h3>
-    <p>View the code for this game <a href="https://github.com/xandora/rock-paper-scissors">here</a>.</p>
+    <div id="game-button-box">
+        <button class="button" id="Rock">Rock!</button>
+        <button class="button" id="Paper">Paper!</button>
+        <button class="button" id="Scissors">Scissors!</button>
+    </div>
+    <div id="game-score-box">
+    </div>
     <p id="score"></p>
 
     <script>
@@ -54,11 +59,18 @@
         function game() {
             playerScore = 0;
             computerScore = 0;
-            for (let i = 0; i <=4; i++){
+                //playRound(playGame, computerPlay);
                 console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            }
             console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
         }
+
+        function playGame(e){
+            console.log(e.target.id);
+            const playerMove = e.target.id;
+            console.log(playRound(playerMove, computerPlay()));
+        }
+        const btns = document.querySelectorAll(".button");
+        btns.forEach(btn => btn.addEventListener("click", playGame));
     </script>
 </body>
 
