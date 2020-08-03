@@ -21,14 +21,14 @@
     <script>
         let playerScore = 0;
         let computerScore = 0;
-        let moves = ["Rock", "Paper", "Scissors"];
+        const moves = ["Rock", "Paper", "Scissors"];
         
         function computerPlay() {
             return moves[Math.floor(Math.random()*moves.length)];
         }
 
         function playRound(playerSelection, computerSelection) {
-            let playerGo = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+            let playerGo =  playerSelection; //[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
             let computerGo = computerSelection;
             if (
                 (playerGo == moves[0] && computerGo == moves[2]) ||
@@ -41,14 +41,6 @@
             else if (playerGo == computerGo) {
                 return "It's a draw!";
             }
-            else if (playerGo == '' || null) {
-                console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-
-            }
-            else if (!moves.includes(playerGo)) {
-                console.log("Player entered an invalid move. " + "(" + playerGo + ")");
-                console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            }
             else {
                 computerScore++;
                 return "You lose! " + computerGo + " beats " + playerGo + ".";
@@ -56,19 +48,18 @@
 
         }
 
-        function game() {
-            playerScore = 0;
-            computerScore = 0;
-                //playRound(playGame, computerPlay);
-                console.log(playRound(prompt("Choose an option: Rock, Paper, or Scissors?"), computerPlay()));
-            console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
-        }
-
         function playGame(e){
-            console.log(e.target.id);
             const playerMove = e.target.id;
             console.log(playRound(playerMove, computerPlay()));
+            console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
+            score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore;
         }
+        
+        const gameScoreBox = document.querySelector("#game-score-box");
+        const score = document.createElement('p');
+        gameScoreBox.appendChild(score);
+        //score.textContent
+
         const btns = document.querySelectorAll(".button");
         btns.forEach(btn => btn.addEventListener("click", playGame));
     </script>
