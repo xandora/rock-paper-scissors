@@ -21,6 +21,7 @@
     <script>
         let playerScore = 0;
         let computerScore = 0;
+        let gamesPlayed = 0;
         const moves = ["Rock", "Paper", "Scissors"];
         
         function computerPlay() {
@@ -52,12 +53,22 @@
             const playerMove = e.target.id;
             console.log(playRound(playerMove, computerPlay()));
             console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
-            score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore;
-        }
+            if (gamesPlayed >= 5) {
+                alert("Game over! Player Score: " + playerScore + ", Computer Score: " + computerScore);
+                gamesPlayed = 0;
+                playerScore = 0;
+                computerScore = 0;
+            } else {
+                score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore;
+                console.log(gamesPlayed++);
+            };
+        };
         
         const gameScoreBox = document.querySelector("#game-score-box");
         const score = document.createElement('p');
+        const outcome = document.createElement('p');
         gameScoreBox.appendChild(score);
+        gameScoreBox.appendChild(outcome);
         //score.textContent
 
         const btns = document.querySelectorAll(".button");
