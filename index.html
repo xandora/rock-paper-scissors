@@ -19,16 +19,21 @@
 
         const gameTitle = document.createElement("h1");
         gameTitle.innerHTML = "Rock Paper Scissors!";
+        gameTitle.style = "text-align:center";
         document.body.appendChild(gameTitle);
         const gameButtonBox = document.createElement("div");
         gameButtonBox.id = "#game-button-box";
+        gameButtonBox.style = "margin:auto;width:50%;display:flex;justify-content:space-around";
         document.body.appendChild(gameButtonBox);
         const gameScoreBox = document.createElement("div");
         gameScoreBox.id = "#game-score-box";
+        gameScoreBox.style = "margin:auto;width:50%;display:flex;flex-direction:column";
         document.body.appendChild(gameScoreBox);
         
         const score = document.createElement('p');
+        score.style = "text-align:center";
         const outcome = document.createElement('p');
+        outcome.style = "text-align:center";
         outcome.id = "#outcome";
         
         function computerPlay() {
@@ -68,7 +73,7 @@
             gamesPlayed++;
             const playerMove = e.target.id;
             playRound(playerMove, computerPlay());
-            if (gamesPlayed >= 5) {
+            if (playerScore >= 5 || computerScore >= 5) {
                 score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore + ", Draws: " + draws + ".";
                 outcome.textContent = "Game over! Player Score: " + playerScore + ", Computer Score: " + computerScore;
                 resetGame();
