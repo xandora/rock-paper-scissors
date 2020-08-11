@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <h1>Rock Paper Scissors!</h1>
     
     <script>
         let playerScore = 0;
@@ -18,6 +17,9 @@
         
         const moves = ["Rock", "Paper", "Scissors"];
 
+        const gameTitle = document.createElement("h1");
+        gameTitle.innerHTML = "Rock Paper Scissors!";
+        document.body.appendChild(gameTitle);
         const gameButtonBox = document.createElement("div");
         gameButtonBox.id = "#game-button-box";
         document.body.appendChild(gameButtonBox);
@@ -27,6 +29,7 @@
         
         const score = document.createElement('p');
         const outcome = document.createElement('p');
+        outcome.id = "#outcome";
         
         function computerPlay() {
             return moves[Math.floor(Math.random()*moves.length)];
@@ -71,6 +74,7 @@
                 resetGame();
             } else {
                 score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore + ", Draws: " + draws + ".";
+                outcome.textContent = "";
             };
         };
         
