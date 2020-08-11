@@ -9,27 +9,31 @@
 
 <body>
     <h1>Rock Paper Scissors!</h1>
-    <div id="game-button-box">
-        <button class="button" id="Rock">Rock!</button>
-        <button class="button" id="Paper">Paper!</button>
-        <button class="button" id="Scissors">Scissors!</button>
-    </div>
-    <div id="game-score-box">
-    </div>
-    <p id="score"></p>
-
+    
     <script>
         let playerScore = 0;
         let computerScore = 0;
+        let draws = 0;
         let gamesPlayed = 0;
+        
         const moves = ["Rock", "Paper", "Scissors"];
+
+        const gameButtonBox = document.createElement("div");
+        gameButtonBox.id = "#game-button-box";
+        document.body.appendChild(gameButtonBox);
+        const gameScoreBox = document.createElement("div");
+        gameScoreBox.id = "#game-score-box";
+        document.body.appendChild(gameScoreBox);
+        
+        const score = document.createElement('p');
+        const outcome = document.createElement('p');
         
         function computerPlay() {
             return moves[Math.floor(Math.random()*moves.length)];
         }
 
         function playRound(playerSelection, computerSelection) {
-            let playerGo =  playerSelection; //[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+            let playerGo =  playerSelection;
             let computerGo = computerSelection;
             if (
                 (playerGo == moves[0] && computerGo == moves[2]) ||
@@ -40,6 +44,7 @@
                 return "You win! " + playerGo + " beats " + computerGo + ".";
             }
             else if (playerGo == computerGo) {
+                draws++;
                 return "It's a draw!";
             }
             else {
@@ -49,27 +54,37 @@
 
         }
 
-        function playGame(e){
-            const playerMove = e.target.id;
-            console.log(playRound(playerMove, computerPlay()));
-            console.log("Player Score: " + playerScore + ", Computer Score: " + computerScore);
-            if (gamesPlayed >= 5) {
-                alert("Game over! Player Score: " + playerScore + ", Computer Score: " + computerScore);
+        function resetGame(){
                 gamesPlayed = 0;
                 playerScore = 0;
                 computerScore = 0;
+                draws = 0;
+        };
+
+        function playGame(e){
+            gamesPlayed++;
+            const playerMove = e.target.id;
+            playRound(playerMove, computerPlay());
+            if (gamesPlayed >= 5) {
+                score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore + ", Draws: " + draws + ".";
+                outcome.textContent = "Game over! Player Score: " + playerScore + ", Computer Score: " + computerScore;
+                resetGame();
             } else {
-                score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore;
-                console.log(gamesPlayed++);
+                score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore + ", Draws: " + draws + ".";
             };
         };
         
-        const gameScoreBox = document.querySelector("#game-score-box");
-        const score = document.createElement('p');
-        const outcome = document.createElement('p');
+        moves.forEach(move => {
+            var buttonName = "btn" + move;
+            buttonName = document.createElement('button');
+            buttonName.classList = "button";
+            buttonName.id = move;
+            buttonName.innerHTML = move + "!";
+            gameButtonBox.appendChild(buttonName);
+        });
+
         gameScoreBox.appendChild(score);
         gameScoreBox.appendChild(outcome);
-        //score.textContent
 
         const btns = document.querySelectorAll(".button");
         btns.forEach(btn => btn.addEventListener("click", playGame));
