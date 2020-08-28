@@ -23,7 +23,7 @@
         document.body.appendChild(gameTitle);
         const gameButtonBox = document.createElement("div");
         gameButtonBox.id = "#game-button-box";
-        gameButtonBox.style = "margin:auto;width:50%;display:flex;justify-content:space-around";
+        gameButtonBox.style = "margin:auto;height:50vh;width:50%;display:flex;justify-content:space-around;border:5px solid red";
         document.body.appendChild(gameButtonBox);
         const gameScoreBox = document.createElement("div");
         gameScoreBox.id = "#game-score-box";
@@ -35,7 +35,11 @@
         const outcome = document.createElement('p');
         outcome.style = "text-align:center";
         outcome.id = "#outcome";
-        
+        const gameOutcome = document.createElement('p');
+        gameOutcome.style = "text-align:center";
+        gameOutcome.id = "#gameOutcome";
+        gameScoreBox.appendChild(outcome);
+
         function computerPlay() {
             return moves[Math.floor(Math.random()*moves.length)];
         }
@@ -49,15 +53,15 @@
                 (playerGo == moves[2] && computerGo == moves[1])
                 ) {
                 playerScore++;
-                return "You win! " + playerGo + " beats " + computerGo + ".";
+                outcome.textContent = "You win! " + playerGo + " beats " + computerGo + ".";
             }
             else if (playerGo == computerGo) {
                 draws++;
-                return "It's a draw!";
+                outcome.textContent = "It's a draw!";
             }
             else {
                 computerScore++;
-                return "You lose! " + computerGo + " beats " + playerGo + ".";
+                outcome.textContent = "You lose! " + computerGo + " beats " + playerGo + ".";
             }
 
         }
@@ -75,11 +79,11 @@
             playRound(playerMove, computerPlay());
             if (playerScore >= 5 || computerScore >= 5) {
                 score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore + ", Draws: " + draws + ".";
-                outcome.textContent = "Game over! Player Score: " + playerScore + ", Computer Score: " + computerScore;
+                gameOutcome.textContent = "Game over! Player Score: " + playerScore + ", Computer Score: " + computerScore;
                 resetGame();
             } else {
                 score.textContent = "Player Score: " + playerScore + ", Computer Score: " + computerScore + ", Draws: " + draws + ".";
-                outcome.textContent = "";
+                gameOutcome.textContent = "";
             };
         };
         
@@ -87,13 +91,14 @@
             var buttonName = "btn" + move;
             buttonName = document.createElement('button');
             buttonName.classList = "button";
+            buttonName.style = "height:6em"
             buttonName.id = move;
             buttonName.innerHTML = move + "!";
             gameButtonBox.appendChild(buttonName);
         });
 
         gameScoreBox.appendChild(score);
-        gameScoreBox.appendChild(outcome);
+        gameScoreBox.appendChild(gameOutcome);
 
         const btns = document.querySelectorAll(".button");
         btns.forEach(btn => btn.addEventListener("click", playGame));
